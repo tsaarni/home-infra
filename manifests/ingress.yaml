@@ -1,0 +1,51 @@
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: zigbee
+spec:
+  virtualhost:
+    fqdn: zigbee.protonode.fi
+  routes:
+    - services:
+        - name: zigbee2mqtt
+          port: 8080
+      enableWebsockets: true
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: grafana
+spec:
+  virtualhost:
+    fqdn: grafana.protonode.fi
+  routes:
+    - services:
+        - name: grafana
+          port: 3000
+      enableWebsockets: true
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: zwave
+spec:
+  virtualhost:
+    fqdn: zwave.protonode.fi
+  routes:
+    - services:
+        - name: zwave2mqtt
+          port: 8091
+      enableWebsockets: true
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: nodered
+spec:
+  virtualhost:
+    fqdn: nodered.protonode.fi
+  routes:
+    - services:
+        - name: nodered
+          port: 1880
+      enableWebsockets: true
