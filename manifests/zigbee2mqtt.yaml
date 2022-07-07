@@ -18,7 +18,7 @@ spec:
         # https://github.com/Koenkk/zigbee2mqtt/blob/master/docker/Dockerfile
         # https://hub.docker.com/r/koenkk/zigbee2mqtt/
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.21.1
+          image: koenkk/zigbee2mqtt:1.26.0
           # command:
           #   - "/bin/sleep"
           # args:
@@ -86,8 +86,8 @@ data:
     advanced:
       network_key: '!secret network_key'
       log_rotation: false
-    permit_join: true
-    #permit_join: false
+    #permit_join: true
+    permit_join: false
     device_options:
       temperature_precision: 2
     frontend:
@@ -132,6 +132,14 @@ data:
       friendly_name: 'powerplug-terrace'
     '0x00124b0023966555':
       friendly_name: 'door-terrace'
+    '0x00158d000233356b':
+      friendly_name: 'button-car'
+    '0x00158d0007dfa780':
+      friendly_name: 'temperature-backyard'
+    '0x70b3d52b6000608d':
+      friendly_name: 'powerplug-1-kitchen'
+    '0x70b3d52b600060c9':
+      friendly_name: 'powerplug-2'
 ---
 apiVersion: v1
 kind: Service
@@ -143,3 +151,9 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
+
+# Error: Error while opening serialport 'Error: Error Resource temporarily unavailable Cannot lock port'
+# then run
+#    kubectl delete -f manifests/zigbee2mqtt.yaml
+#    kubectl apply -f manifests/zigbee2mqtt.yaml
+

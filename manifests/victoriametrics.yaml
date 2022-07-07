@@ -18,10 +18,11 @@ spec:
         # https://github.com/VictoriaMetrics/VictoriaMetrics
         # https://hub.docker.com/r/victoriametrics/victoria-metrics/tags
         - name: victoriametrics
-          image: victoriametrics/victoria-metrics:v1.70.0
+          image: victoriametrics/victoria-metrics:v1.78.0
           args:
             - "-promscrape.config"
             - "/config/prometheus.yaml"
+            - "-retentionPeriod=100y"
           volumeMounts:
             - mountPath: /config
               name: config
@@ -62,3 +63,9 @@ data:
       - job_name: prometheus
         static_configs:
           - targets: ["nodered:1880"]
+
+# error:
+#   cannot acquire lock on file "/victoria-metrics-data/flock.lock": resource temporarily unavailable
+# then run
+#   kubectl delete -f manifests/victoriametrics.yaml
+#   kubectl apply -f manifests/victoriametrics.yaml

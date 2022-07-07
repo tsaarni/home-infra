@@ -61,3 +61,9 @@ kubectl exec deployment/grafana -- tar zvcf - /var/lib/grafana > backup/$BACKUP_
 kubectl exec deployment/victoriametrics -- tar zvcf - /victoria-metrics-data > backup/$BACKUP_TIMESTAMP-victoriametrics.tar.gz
 kubectl exec deployment/nodered -- tar zvcf - /data > backup/$BACKUP_TIMESTAMP-nodered.tar.gz
 ```
+
+## Adding new zigbee device
+
+* https://www.zigbee2mqtt.io/advanced/support-new-devices/01_support_new_devices.html#_2-adding-your-device
+https://github.com/Koenkk/zigbee2mqtt/issues?q=is%3Aissue+is%3Aopen+TS011F
+https://www.zigbee2mqtt.io/devices/TS011F_plug_3.html#options

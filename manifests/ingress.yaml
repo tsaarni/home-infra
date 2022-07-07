@@ -4,7 +4,7 @@ metadata:
   name: zigbee
 spec:
   virtualhost:
-    fqdn: zigbee.protonode.fi
+    fqdn: zigbee.home.protonode.fi
   routes:
     - services:
         - name: zigbee2mqtt
@@ -17,7 +17,7 @@ metadata:
   name: grafana
 spec:
   virtualhost:
-    fqdn: grafana.protonode.fi
+    fqdn: grafana.home.protonode.fi
   routes:
     - services:
         - name: grafana
@@ -30,7 +30,7 @@ metadata:
   name: zwave
 spec:
   virtualhost:
-    fqdn: zwave.protonode.fi
+    fqdn: zwave.home.protonode.fi
   routes:
     - services:
         - name: zwave2mqtt
@@ -43,7 +43,7 @@ metadata:
   name: nodered
 spec:
   virtualhost:
-    fqdn: nodered.protonode.fi
+    fqdn: nodered.home.protonode.fi
   routes:
     - services:
         - name: nodered
