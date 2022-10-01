@@ -1,7 +1,7 @@
 
 # Personal home automation server setup
 
-## Install k3s
+## Install or update k3s
 
 ```console
 curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
@@ -19,7 +19,8 @@ Disable default ingress controller
      server \
         '--write-kubeconfig-mode=644' \
 -
-+       --disable traefik
++       --disable traefik \
++       --disable servicelb
 ```
 
 Restart k3s
