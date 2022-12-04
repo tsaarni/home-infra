@@ -68,3 +68,8 @@ kubectl exec deployment/nodered -- tar zvcf - /data > backup/$BACKUP_TIMESTAMP-n
 * https://www.zigbee2mqtt.io/advanced/support-new-devices/01_support_new_devices.html#_2-adding-your-device
 https://github.com/Koenkk/zigbee2mqtt/issues?q=is%3Aissue+is%3Aopen+TS011F
 https://www.zigbee2mqtt.io/devices/TS011F_plug_3.html#options
+
+## VictoriaMetrics
+
+* MetricsQL language reference https://github.com/VictoriaMetrics/VictoriaMetrics/wiki/MetricsQL
+
