@@ -18,7 +18,7 @@ spec:
         # https://github.com/Koenkk/zigbee2mqtt/blob/master/docker/Dockerfile
         # https://hub.docker.com/r/koenkk/zigbee2mqtt/
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.26.0
+          image: koenkk/zigbee2mqtt:1.28.4
           # command:
           #   - "/bin/sleep"
           # args:
@@ -142,6 +142,16 @@ data:
       friendly_name: 'powerplug-2'
     '0x00158d0007e08812':
       friendly_name: 'temperature-6'
+    '0xf0d1b8be2408a4a7':
+      friendly_name: 'powerplug-car'
+    '0x0c4314fffee9d73c':
+      friendly_name: 'temperature-7-bedroom'
+    '0x00158d0008cebf80':
+      friendly_name: 'temperature-8-toilet'
+    '0x00158d0008cf2809':
+      friendly_name: 'temperature-9-bathroom'
+    '0x00158d0008cf11e1':
+      friendly_name: 'temperature-10-utilityroom'
 ---
 apiVersion: v1
 kind: Service
