@@ -1,5 +1,6 @@
-
 # Personal home automation server setup
+
+⚠️ Note: This project is meant for personal use, and is not guaranteed to work for anyone else.
 
 ## Install or update k3s
 
@@ -30,13 +31,13 @@ sudo systemctl daemon-reload
 sudo systemctl restart k3s.service
 ```
 
+The global kubeconfig file is stored at `/etc/rancher/k3s/k3s.yaml`.
 
 Deploy Contour
 
 ```console
 kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
 ```
-
 
 Build custom node-red image and import it to containerd store
 
@@ -46,10 +47,24 @@ podman save localhost/nodered:latest | sudo k3s ctr images import -
 sudo k3s ctr images ls | grep nodered
 ```
 
-
 ## Tips
 
+### Storage
+
 K3s volumes can be directly accessed on host under directory `/var/lib/rancher/k3s/storage/`
+
+### VictoriaMetrics
+
+VictoriamMtrics might go into crashloop after upgrade with error
+
+```
+FATAL: cannot create lock file: cannot acquire lock on file "/victoria-metrics-data/flock.lock": resource temporarily unavailable; make sure a single process has exclusive access to "/victoria-metrics-data"
+```
+
+```console
+kubectl scale deployment victoriametrics --replicas 0
+kubectl scale deployment victoriametrics --replicas 1
+```
 
 ## Backup
 
@@ -65,11 +80,10 @@ kubectl exec deployment/nodered -- tar zvcf - /data > backup/$BACKUP_TIMESTAMP-n
 
 ## Adding new zigbee device
 
-* https://www.zigbee2mqtt.io/advanced/support-new-devices/01_support_new_devices.html#_2-adding-your-device
-https://github.com/Koenkk/zigbee2mqtt/issues?q=is%3Aissue+is%3Aopen+TS011F
-https://www.zigbee2mqtt.io/devices/TS011F_plug_3.html#options
+- https://www.zigbee2mqtt.io/advanced/support-new-devices/01_support_new_devices.html#_2-adding-your-device
+  https://github.com/Koenkk/zigbee2mqtt/issues?q=is%3Aissue+is%3Aopen+TS011F
+  https://www.zigbee2mqtt.io/devices/TS011F_plug_3.html#options
 
 ## VictoriaMetrics
 
-* MetricsQL language reference https://github.com/VictoriaMetrics/VictoriaMetrics/wiki/MetricsQL
-
+- MetricsQL language reference https://github.com/VictoriaMetrics/VictoriaMetrics/wiki/MetricsQL

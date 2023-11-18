@@ -15,11 +15,11 @@ spec:
         app: zwave2mqtt
     spec:
       containers:
-        # https://zwave-js.github.io/zwavejs2mqtt
+        # https://zwave-js.github.io/zwave-js-ui/#/
         # https://github.com/zwave-js/zwavejs2mqtt
         # https://hub.docker.com/r/zwavejs/zwavejs2mqtt
         - name: zwave2mqtt
-          image: zwavejs/zwavejs2mqtt:6.0.3
+          image: zwavejs/zwavejs2mqtt:9.3.2
           # command:
           #   - "/bin/sleep"
           # args:

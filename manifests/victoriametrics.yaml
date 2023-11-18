@@ -18,7 +18,7 @@ spec:
         # https://github.com/VictoriaMetrics/VictoriaMetrics
         # https://hub.docker.com/r/victoriametrics/victoria-metrics/tags
         - name: victoriametrics
-          image: victoriametrics/victoria-metrics:v1.78.0
+          image: victoriametrics/victoria-metrics:v1.95.1
           args:
             - "-promscrape.config"
             - "/config/prometheus.yaml"

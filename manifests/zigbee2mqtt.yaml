@@ -18,7 +18,7 @@ spec:
         # https://github.com/Koenkk/zigbee2mqtt/blob/master/docker/Dockerfile
         # https://hub.docker.com/r/koenkk/zigbee2mqtt/
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.28.4
+          image: koenkk/zigbee2mqtt:1.33.2
           # command:
           #   - "/bin/sleep"
           # args:
@@ -152,6 +152,8 @@ data:
       friendly_name: 'temperature-9-bathroom'
     '0x00158d0008cf11e1':
       friendly_name: 'temperature-10-utilityroom'
+    '0x94deb8fffe41e6b6':
+      friendly_name: 'temperature-11-office'
 ---
 apiVersion: v1
 kind: Service
@@ -168,4 +170,3 @@ spec:
 # then run
 #    kubectl delete -f manifests/zigbee2mqtt.yaml
 #    kubectl apply -f manifests/zigbee2mqtt.yaml
-
