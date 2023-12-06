@@ -99,7 +99,7 @@ data:
       #auth_token: your-secret-token
   devices.yaml: |
     '0x00158d00073a250d':
-      friendly_name: 'motion-agara-nnn'
+      friendly_name: 'motion-agara-front'
     '0x0017880106499504':
       friendly_name: 'motion-philips-car'
     '0x00158d00075bfd6f':
@@ -154,6 +154,8 @@ data:
       friendly_name: 'temperature-10-utilityroom'
     '0x94deb8fffe41e6b6':
       friendly_name: 'temperature-11-office'
+    '0x94deb8fffe41e75b':
+      friendly_name: 'temperature-12'
 ---
 apiVersion: v1
 kind: Service

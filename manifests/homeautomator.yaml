@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeautomator
+spec:
+  selector:
+    matchLabels:
+      app: homeautomator
+  template:
+    metadata:
+      labels:
+        app: homeautomator
+    spec:
+      containers:
+      - name: homeautomator
+        image: quay.io/tsaarni/home-automator:latest
+        env:
+          - name: TZ
+            value: Europe/Helsinki
+        volumeMounts:
+        - mountPath: /config
+          name: config
+      volumes:
+      - name: config
+        configMap:
+          name: homeautomator-config

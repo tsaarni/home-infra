@@ -39,6 +39,23 @@ Deploy Contour
 kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
 ```
 
+## Store configuration
+
+```console
+# homemetrics
+kubectl create configmap homemetrics-config --from-file=secrets/homemetrics/config.yaml --dry-run=client -o yaml | kubectl apply -f -
+
+# homeautomator
+kubectl create configmap homeautomator-config --from-file=secrets/homeautomator/config.yaml --dry-run=client -o yaml | kubectl apply -f -
+
+# dyndns
+kubectl create configmap dyndns-config --from-file=secrets/dyndns-config.yaml --dry-run=client -o yaml | kubectl apply -f -
+gcloud iam service-accounts keys create secrets/gcp-dyndns-client-serviceaccount.json --iam-account="dyndns-client@$(gcloud config get project).iam.gserviceaccount.com" --project="$(gcloud config get project)"
+kubectl create secret generic dyndns-gcp-key --from-file=secrets/gcp-dyndns-client-serviceaccount.json --dry-run=client -o yaml | kubectl apply -f -
+```
+
+## Deploy apps
+
 Build custom node-red image and import it to containerd store
 
 ```console

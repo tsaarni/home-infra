@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dyndns
+spec:
+  selector:
+    matchLabels:
+      app: dyndns
+  template:
+    metadata:
+      labels:
+        app: dyndns
+    spec:
+      containers:
+      - name: dyndns
+        image: quay.io/tsaarni/dyndns-updater:latest
+        command:
+          - "/updater"
+          - "--config=/config/dyndns-config.yaml"
+          - "--key-file=/pkey/gcp-dyndns-client-serviceaccount.json"
+          - "--update-every=24h"
+        volumeMounts:
+          - mountPath: /pkey
+            name: gcp-key
+          - mountPath: /config
+            name: dyndns-config
+      volumes:
+      - name: gcp-key
+        secret:
+          secretName: dyndns-gcp-key
+      - name: dyndns-config
+        configMap:
+          name: dyndns-config
