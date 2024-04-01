@@ -52,7 +52,12 @@ kubectl create configmap homeautomator-config --from-file=secrets/homeautomator/
 kubectl create configmap dyndns-config --from-file=secrets/dyndns-config.yaml --dry-run=client -o yaml | kubectl apply -f -
 gcloud iam service-accounts keys create secrets/gcp-dyndns-client-serviceaccount.json --iam-account="dyndns-client@$(gcloud config get project).iam.gserviceaccount.com" --project="$(gcloud config get project)"
 kubectl create secret generic dyndns-gcp-key --from-file=secrets/gcp-dyndns-client-serviceaccount.json --dry-run=client -o yaml | kubectl apply -f -
+
+# cloudflared tunnel
+kubectl create secret generic cloudflared-token --from-file=secrets/cloudflared-tunnel-token --dry-run=client -o yaml | kubectl apply -f -
 ```
+
+````
 
 ## Deploy apps
 
@@ -62,13 +67,14 @@ Build custom node-red image and import it to containerd store
 podman build --tag nodered:latest docker/nodered/
 podman save localhost/nodered:latest | sudo k3s ctr images import -
 sudo k3s ctr images ls | grep nodered
-```
+````
 
 ## Tips
 
 ### Storage
 
-K3s volumes can be directly accessed on host under directory `/var/lib/rancher/k3s/storage/`
+Host mounts are used for local storage.
+K3s persistent volumes can be directly accessed on host under directory `/var/lib/rancher/k3s/storage/`
 
 ### VictoriaMetrics
 
