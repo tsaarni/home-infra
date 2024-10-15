@@ -21,7 +21,7 @@ spec:
         # https://grafana.com/docs/grafana/latest/installation/docker/
         #   default login: admin:admin
         - name: grafana
-          image: grafana/grafana:9.5.14
+          image: grafana/grafana:11.2.2
           env:
             - name: TZ
               value: Europe/Helsinki
@@ -34,8 +34,8 @@ spec:
               name: config
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: grafana
+          hostPath:
+            path: /volumes/grafana
         - name: config
           configMap:
             name: grafana-config
@@ -48,6 +48,10 @@ data:
   grafana.ini: |
     [auth.anonymous]
     enabled = true
+    org_role = Admin
+
+    [auth]
+    disable_login_form = true
 ---
 apiVersion: v1
 kind: Service
@@ -57,5 +61,5 @@ spec:
   selector:
     app: grafana
   ports:
-    - port: 3000
+    - port: 80
       targetPort: 3000
