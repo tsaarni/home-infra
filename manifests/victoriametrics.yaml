@@ -39,8 +39,8 @@ spec:
             name: victoriametrics-config
             defaultMode: 0600
         - name: data
-          persistentVolumeClaim:
-            claimName: victoriametrics
+          hostPath:
+            path: /volumes/victoriametrics
 ---
 apiVersion: v1
 kind: Service

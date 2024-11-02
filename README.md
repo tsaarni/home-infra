@@ -5,7 +5,7 @@
 ## Install or update k3s
 
 ```console
-curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --disable traefik --disable servicelb
 ```
 
 ## Change ingress controller to Contour

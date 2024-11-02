@@ -28,16 +28,4 @@ spec:
     app: homescreen
   ports:
     - port: 80
-      targetPort: 80 
----
-apiVersion: projectcontour.io/v1
-kind: HTTPProxy
-metadata:
-  name: homescreen
-spec:
-  virtualhost:
-    fqdn: homescreen.home.protonode.fi
-  routes:
-    - services:
-        - name: homescreen
-          port: 80
+      targetPort: 80

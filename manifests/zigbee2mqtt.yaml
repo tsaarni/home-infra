@@ -18,7 +18,7 @@ spec:
         # https://github.com/Koenkk/zigbee2mqtt/blob/master/docker/Dockerfile
         # https://hub.docker.com/r/koenkk/zigbee2mqtt/
         - name: zigbee2mqtt
-          image: koenkk/zigbee2mqtt:1.33.2
+          image: koenkk/zigbee2mqtt:1.40.2
           # command:
           #   - "/bin/sleep"
           # args:
@@ -59,8 +59,8 @@ spec:
             name: zigbee2mqtt-config
             defaultMode: 0600
         - name: data
-          persistentVolumeClaim:
-            claimName: zigbee2mqtt
+          hostPath:
+            path: /volumes/zigbee2mqtt
         - name: tty
           hostPath:
             path: /dev/ttyUSB0
@@ -156,6 +156,8 @@ data:
       friendly_name: 'temperature-11-office'
     '0x94deb8fffe41e75b':
       friendly_name: 'temperature-12'
+    '0xa4c138c599816031':
+      friendly_name: 'powerplug-3-pm'
 ---
 apiVersion: v1
 kind: Service
@@ -165,7 +167,7 @@ spec:
   selector:
     app: zigbee2mqtt
   ports:
-    - port: 8080
+    - port: 80
       targetPort: 8080
 
 # Error: Error while opening serialport 'Error: Error Resource temporarily unavailable Cannot lock port'
